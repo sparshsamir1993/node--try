@@ -27,5 +27,23 @@ app.use(passport.session());
 require("./routes/authRoutes")(app); //require() returns a function, which immediately gets called with app as param, hence 2 sets of '()'
 require("./routes/billingRoutes")(app);
 
+
+if(process.env.NODE_ENV === 'production'){
+
+    //to serve main.js & main.css
+    app.use(express.static("client/build"));
+
+    //this code will be executed only if above all app.use() fails.
+    const path = require('path');
+    app.get('*', (req, res)=>{
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
+
+     
+
+}else{
+
+}
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
