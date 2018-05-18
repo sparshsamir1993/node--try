@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require("./config/keys");
 require("./models/Users");
+require("./models/Survey");
 require("./services/passport");
 
 mongoose.connect(keys.mongoURI);
@@ -26,6 +27,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app); //require() returns a function, which immediately gets called with app as param, hence 2 sets of '()'
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 
 if(process.env.NODE_ENV === 'production'){
