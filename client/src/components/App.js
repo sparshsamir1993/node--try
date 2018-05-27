@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
+import Dashboard from './Dashboard';
 
-const Dashboard = () => <h2>Dashboard</h2>
+import SurveyNew from './surveys/SurveyNew'; 
 
 
-const SurverNew = () => <h2>SurverNew</h2>
 
 
 
@@ -20,14 +20,15 @@ class App extends Component{
     }
     render(){
         return(
-            <div className="container">
+            <div>
                 <BrowserRouter>
                     <div>
                         <Header />
-                        <Route exact path="/" component={Landing} />
-                        <Route exact path="/surveys" component={Dashboard } />
-                        <Route path="/surveys/new" component={ SurverNew } />
-                        
+                        <div className="container">
+                            <Route exact path="/" component={Landing} />
+                            <Route exact path="/surveys" component={Dashboard } />
+                            <Route path="/surveys/new" component={ SurveyNew } />
+                        </div>
                     </div>
                 </BrowserRouter>
             </div>
